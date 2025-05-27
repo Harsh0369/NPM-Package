@@ -1,0 +1,23 @@
+{
+    "name": "<%= projectName %>",
+    "version": "1.0.0",
+    "main": "src/server.<%= language === 'typescript' ? 'ts' : 'js' %>",
+    "scripts": {
+      "start": "node src/server.<%= language === 'typescript' ? 'js' : 'js' %>",
+      "dev": "nodemon src/server.<%= language === 'typescript' ? 'ts' : 'js' %>",
+      <% if (language === 'typescript') { -%>
+      "build": "tsc",
+      "start:prod": "npm run build && node dist/server.js"
+      <% } -%>
+    },
+    "dependencies": {
+      <% Object.entries(dependencies).forEach(([dep, version], index) => { -%>
+      "<%= dep %>": "<%= version %>"<%= index < Object.keys(dependencies).length - 1 ? ',' : '' %>
+      <% }) -%>
+    },
+    "devDependencies": {
+      <% Object.entries(devDependencies).forEach(([dep, version], index) => { -%>
+      "<%= dep %>": "<%= version %>"<%= index < Object.keys(devDependencies).length - 1 ? ',' : '' %>
+      <% }) -%>
+    }
+  }

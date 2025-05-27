@@ -1,0 +1,26 @@
+{
+  "name": "@yourusername/wizcli",
+  "version": "0.0.1",
+  "description": "Magical project scaffolding wizard for modern JS stacks",
+  "bin": {
+    "wizcli": "./bin/cli.js",
+    "wizcli-win": "./wizcli.cmd"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^14.0.0",
+    "ejs": "^3.1.10",
+    "execa": "^8.0.1",
+    "inquirer": "^12.6.3",
+    "listr2": "^8.3.3",
+    "nanospinner": "^1.2.2"
+  }
+}

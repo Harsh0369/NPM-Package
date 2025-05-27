@@ -1,0 +1,27 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env*.local
+
+# Build
+dist/
+coverage/
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+/test-results/
+/playwright-report/
+
+# Generated projects
+demo-*/
+test-*/
