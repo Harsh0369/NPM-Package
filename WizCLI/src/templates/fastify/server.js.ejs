@@ -1,0 +1,41 @@
+const fastify = require('fastify');
+<% if (database === 'mongodb') { -%>
+const connectDB = require('./config/db');
+<% } -%>
+
+const server = fastify({ 
+  logger: true 
+});
+
+// Database connection
+<% if (database === 'mongodb') { -%>
+server.addHook('onReady', async () => {
+  try {
+    await connectDB();
+    server.log.info('MongoDB connected successfully');
+  } catch (err) {
+    server.log.error(err, 'Database connection failed');
+    process.exit(1);
+  }
+});
+<% } -%>
+
+// Health check endpoint
+server.get('/health', async () => {
+  return { status: 'ok' };
+});
+
+const start = async () => {
+  try {
+    await server.listen({ 
+      port: process.env.PORT || 3000,
+      host: '0.0.0.0'
+    });
+    server.log.info(`Server running on ${server.server.address().port}`);
+  } catch (err) {
+    server.log.error(err);
+    process.exit(1);
+  }
+};
+
+start();

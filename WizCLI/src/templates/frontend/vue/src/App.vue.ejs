@@ -1,0 +1,27 @@
+<template>
+    <div class="app-container">
+      <nav class="navbar">
+        <router-link to="/" class="nav-logo"><%= projectName %></router-link>
+      </nav>
+      <router-view></router-view>
+    </div>
+  </template>
+  
+  <style>
+  .navbar {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+  }
+  .nav-link {
+    text-decoration: none;
+    color: #333;
+  }
+  .router-link-active {
+    font-weight: bold;
+  }
+  </style>

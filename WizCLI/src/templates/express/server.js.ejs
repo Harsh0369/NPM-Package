@@ -1,31 +1,19 @@
 const express = require('express');
-<% if (database === 'MongoDB') { -%>
-require('./config/db');
-<% } -%>
-<% if (middleware.includes('cors')) { -%>
-const cors = require('cors');
-<% } -%>
+const connectDB = require('./config/db');
 
 const app = express();
 
 // Middleware
 app.use(express.json());
-<% if (middleware.includes('helmet')) { -%>
-app.use(require('helmet')());
-<% } -%>
-<% if (middleware.includes('cors')) { -%>
-app.use(cors());
-<% } -%>
-<% if (middleware.includes('morgan')) { -%>
-app.use(require('morgan')('dev'));
-<% } -%>
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('Welcome to <%= projectName %>');
-});
+const authRoutes = require('./routes/auth.routes');
+app.use('/api/auth', authRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Database connection
+connectDB().then(() => {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 });

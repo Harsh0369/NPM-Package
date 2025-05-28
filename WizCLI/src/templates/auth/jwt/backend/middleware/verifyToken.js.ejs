@@ -1,0 +1,33 @@
+<%_ if (language === 'typescript') { _%>
+    import { Request, Response, NextFunction } from 'express';
+    import jwt from 'jsonwebtoken';
+    <%_ if (database === 'mongodb') { _%>
+    import User from '../models/User';
+    <%_ } _%>
+    <%_ } else { _%>
+    const jwt = require('jsonwebtoken');
+    <%_ if (database === 'mongodb') { _%>
+    const User = require('../models/User');
+    <%_ } _%>
+    <%_ } _%>
+    
+    export const verifyToken = async (req, res, next) => {
+      try {
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+        if (!token) throw new Error();
+    
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        
+        <%_ if (database === 'mongodb') { _%>
+        const user = await User.findById(decoded.userId);
+        if (!user) throw new Error();
+        <%_ } else { _%>
+        // Add SQL user lookup here
+        <%_ } _%>
+    
+        req.user = user;
+        next();
+      } catch (error) {
+        res.status(401).json({ message: 'Please authenticate' });
+      }
+    };

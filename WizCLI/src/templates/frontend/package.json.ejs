@@ -1,0 +1,27 @@
+{
+    "name": "<%= projectName %>-client",
+    "private": true,
+    "scripts": {
+      "dev": "<%= bundler %> dev",
+      "build": "<%= bundler %> build",
+      "preview": "<%= bundler %> preview"
+    },
+    "dependencies": {
+      <% if (framework === 'react') { %>
+      "react": "<%= versions.react %>",
+      "react-dom": "<%= versions['react-dom'] %>",
+      "react-router-dom": "<%= versions['react-router-dom'] %>"<% } %>
+      <% if (framework === 'vue') { %>
+      "vue": "<%= versions.vue %>"<% } %>
+    },
+    "devDependencies": {
+      "<%= bundler %>": "<%= versions[bundler] %>"
+      <% if (isTypeScript) { %>,
+      <% if (framework === 'react') { %>
+      "@types/react": "<%= versions['@types/react'] %>",
+      "@types/react-dom": "<%= versions['@types/react-dom'] %>"<% } %>
+      <% if (framework === 'vue') { %>
+      "@vue/tsconfig": "<%= versions['@vue/tsconfig'] %>"<% } %>
+      <% } %>
+    }
+  }

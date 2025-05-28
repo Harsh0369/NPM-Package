@@ -1,0 +1,30 @@
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+<%_ if (database === 'mongodb') { _%>
+const User = require('../models/User');
+<%_ } _%>
+
+// Controller functions
+const register = async (req, res) => {
+  try {
+    // Registration logic here
+    res.status(201).json({ message: 'Registration successful' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const login = async (req, res) => {
+  try {
+    // Login logic here
+    res.json({ token: 'generated-jwt-token' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Add proper exports
+module.exports = {
+  register,
+  login
+};

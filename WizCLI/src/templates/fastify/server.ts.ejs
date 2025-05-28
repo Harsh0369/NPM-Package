@@ -1,0 +1,39 @@
+import fastify from 'fastify';
+<% if (database !== 'none') { -%>
+import { testConnection } from './config/db';
+<% } -%>
+
+const server = fastify({
+  logger: true
+});
+
+// Database connection
+<% if (database !== 'none') { -%>
+server.addHook('onReady', async () => {
+  try {
+    await testConnection();
+  } catch (err) {
+    server.log.error(err, 'Database connection failed');
+    process.exit(1);
+  }
+});
+<% } -%>
+
+// Health check endpoint
+server.get('/health', async () => {
+  return { status: 'ok' };
+});
+
+const start = async () => {
+  try {
+    await server.listen({
+      port: Number(process.env.PORT) || 3000,
+      host: '0.0.0.0'
+    });
+  } catch (err) {
+    server.log.error(err);
+    process.exit(1);
+  }
+};
+
+start();

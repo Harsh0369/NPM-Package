@@ -1,0 +1,10 @@
+node_modules/
+test/
+coverage/
+.gitignore
+*.log
+.DS_Store
+.vscode/
+.idea/
+*.md
+!README.md

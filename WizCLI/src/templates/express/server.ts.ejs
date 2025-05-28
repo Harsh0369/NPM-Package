@@ -1,42 +1,27 @@
-import express, { Application, Request, Response } from 'express';
-<% if (database === 'MongoDB') { -%>
+import express from 'express';
+<!-- <% if (database === 'mongodb') { -%>
 import connectDB from './config/db';
-<% } else if (database === 'PostgreSQL') { -%>
-import { testConnection } from './config/db';
+<% } -%> -->
+<% if (authentication === 'jwt') { -%>
+import authRoutes from './routes/auth.routes';
 <% } -%>
-<% middleware.forEach(mw => { -%>
-import <%= mw.split('-').join('') %> from '<%= mw %>';
-<% }) -%>
 
-const app: Application = express();
-const PORT = process.env.PORT || 3000;
+const app = express();
 
 // Middleware
 app.use(express.json());
-<% if (middleware.includes('helmet')) { -%>
-app.use(helmet());
-<% } -%>
-<% if (middleware.includes('cors')) { -%>
-app.use(cors());
-<% } -%>
-<% if (middleware.includes('morgan')) { -%>
-app.use(morgan('dev'));
+
+// Routes
+<% if (authentication === 'jwt') { -%>
+app.use('/api/auth', authRoutes);
 <% } -%>
 
 // Database connection
-<% if (database !== 'None') { -%>
-<% if (database === 'MongoDB') { -%>
+<% if (database === 'mongodb') { -%>
 connectDB();
-<% } else { -%>
-testConnection();
-<% } -%>
 <% } -%>
 
-// Routes
-app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to <%= projectName %>');
-});
-
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

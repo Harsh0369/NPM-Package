@@ -1,6 +1,6 @@
 {
-  "name": "@yourusername/wizcli",
-  "version": "0.0.1",
+  "name": "wizcli",
+  "version": "1.0.0",
   "description": "Magical project scaffolding wizard for modern JS stacks",
   "bin": {
     "wizcli": "./bin/cli.js",
@@ -8,12 +8,39 @@
   },
   "scripts": {
     "start": "node bin/cli.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm test"
   },
   "type": "module",
   "engines": {
     "node": ">=18.0.0"
   },
+  "keywords": [
+    "cli",
+    "scaffolding",
+    "generator",
+    "fullstack",
+    "express",
+    "fastify",
+    "react",
+    "vue"
+  ],
+  "author": "Harsh Agarwal <harshagarwal81528@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/Harsh0369/NPM-Package",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Harsh0369/NPM-Package"
+  },
+  "bugs": {
+    "url": "https://github.com/Harsh0369/NPM-Package/issues"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/",
+    "wizcli.cmd"
+  ],
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^14.0.0",
