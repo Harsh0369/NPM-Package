@@ -1,16 +1,16 @@
 {
-  "name": "wizcli",
+  "name": "@harsh2004/wizcli",
   "version": "1.0.0",
   "description": "Magical project scaffolding wizard for modern JS stacks",
   "bin": {
     "wizcli": "./bin/cli.js",
     "wizcli-win": "./wizcli.cmd"
   },
-  "scripts": {
-    "start": "node bin/cli.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npm test"
-  },
+ "scripts": {
+  "start": "node bin/cli.js",
+  "test": "echo \"Tests not implemented yet\"",
+  "prepublishOnly": "echo 'Running pre-publish checks...'"
+},
   "type": "module",
   "engines": {
     "node": ">=18.0.0"

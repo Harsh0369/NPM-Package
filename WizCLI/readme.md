@@ -20,7 +20,7 @@ WizCLI is a powerful command-line tool that helps developers quickly scaffold fu
 Install WizCLI globally using npm:
 
 ```bash
-npm install -g wizcli
+npm install -g @harsh2004/wizcli
 ```
 
 ## Usage
