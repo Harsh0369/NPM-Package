@@ -1,6 +1,6 @@
 {
   "name": "@harsh2004/wizcli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Magical project scaffolding wizard for modern JS stacks",
   "bin": {
     "wizcli": "./bin/cli.js",

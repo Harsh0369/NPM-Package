@@ -171,7 +171,7 @@ We welcome contributions! Here's how to set up your development environment:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/wizcli.git
+   git clone https://github.com/Harsh0369/NPM-Package
    cd wizcli
    ```
 
